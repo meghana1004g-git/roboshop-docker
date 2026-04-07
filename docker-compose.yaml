@@ -1,19 +1,22 @@
 services:
   catalogue: 
     build:
-      dockerfile: catalogue.Dockerfile 
+      context: ./catalogue
+      dockerfile: Dockerfile 
     image: Meghanai/catalogue:1.0.0 
     container_name: catalogue
     depends_on:
-    - mongodb
+      - mongodb
+
   mongodb:
     build: 
-      dockerfile: mongodb.Dockerfile # it moves to mongodb directory
-    image: Meghanai/mongodb:1.0.0 #docker build -t Meghanai/mongodb:1.0.0
+      context: ./mongodb
+      dockerfile: Dockerfile
+    image: Meghanai/mongodb:1.0.0
     container_name: mongodb
 
 networks:
   default:
     driver: bridge
     name: roboshop
-    external: false # if true, you need to create network manually
+    external: false
