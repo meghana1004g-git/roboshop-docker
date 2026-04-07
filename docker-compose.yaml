@@ -6,7 +6,7 @@ services:
     image: Meghanai/catalogue:1.0.0 
     container_name: catalogue
     depends_on:
-      - mongodb
+    - mongodb
   user: 
     build:
       context: ./user
@@ -14,7 +14,7 @@ services:
     image: Meghanai/user:1.0.0
     container_name: user
     depends_on:
-      - redis   
+    - redis   
 
   frontend:
     build:
@@ -22,9 +22,11 @@ services:
       dockerfile: Dockerfile   
     image: Meghanai/frontend:1.0.0
     container_name: frontend
+    ports: 
+    - "80:80"
     depends_on:
-      - catalogue
-      - user   
+    - catalogue
+    - user   
  
 
   mongodb:
