@@ -52,6 +52,12 @@ services:
     image: redis:7.0
     container_name: redis 
 
+  mysql:
+    build: 
+      context: ./mysql
+    image: meghanai/mysql:1.0.0   
+    container_name: mysql
+
 networks:
   default:
     driver: bridge
