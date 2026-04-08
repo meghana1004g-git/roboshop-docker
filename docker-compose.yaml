@@ -7,6 +7,7 @@ services:
     container_name: catalogue
     depends_on:
     - mongodb
+    
   user: 
     build:
       context: ./user
@@ -15,6 +16,16 @@ services:
     container_name: user
     depends_on:
     - redis   
+
+  cart: 
+    build:
+      context: ./cart
+      dockerfile: Dockerfile   
+    image: meghanai/cart:1.0.0
+    container_name: cart
+    depends_on:
+    - redis   
+    
 
   frontend:
     build:
@@ -27,6 +38,7 @@ services:
     depends_on:
     - catalogue
     - user   
+    - cart
  
 
   mongodb:
